@@ -7,6 +7,8 @@ Taking inspiration from https://www.psychologies.co.uk/test/are-you-an-introvert
 ## Overview
 This app is a demo quiz app designed for Teamway onboarding. It takes a few questions from [this](https://www.psychologies.co.uk/test/are-you-an-introvert-or-an-extrovert/#test) website and then generates a result at the end explaining whether the user is an introvert or an extrovert.
 
+The app will run on both iOS and Android and is responsive for all screen sizes.
+
 The app uses BLoC pattern for state management. 
 
 The questions for the quiz are stored in assets/questions.json file and extracted at runtime.
