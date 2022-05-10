@@ -90,6 +90,7 @@ class _SplashScreenState extends State<SplashScreen>
                 style: AppConfig.getTextStyle(
                   context: context,
                   textSize: TextSize.large,
+                  fontWeight: FontWeight.bold,
                   textColor: TextColor.white,
                 ),
               ),

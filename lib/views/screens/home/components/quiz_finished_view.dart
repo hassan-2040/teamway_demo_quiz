@@ -33,7 +33,7 @@ class QuizFinishedView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Text(
             getResultDescription(result),
-            textAlign: TextAlign.left,
+            textAlign: TextAlign.justify,
             style: AppConfig.getTextStyle(
               context: context,
               textColor: TextColor.primaryLight,

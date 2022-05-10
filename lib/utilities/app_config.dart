@@ -31,6 +31,7 @@ class AppConfig {
   static late double _textSizeSmall;
 
   ///This function makes sure similar text styles are used throughout the app
+  ///It also ensures any changes are globally accessible.
   static TextStyle getTextStyle({
     required BuildContext context,
     TextColor? textColor,

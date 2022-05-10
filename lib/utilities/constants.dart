@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+
+//Theme Colors for the app
 const Color primaryColorDark = Color(0xFF05316e);
 const accentColor = Color(0xFF1b76f5);
 const MaterialColor themeColor = MaterialColor(0xFF0e4188, _color);
@@ -32,6 +34,6 @@ enum TextColor {
   white,
   danger, //red
   disabled,
-  textButton //underlined blue
+  textButton //blue for raw text buttons such as hyperlink
 }
 
