@@ -22,8 +22,8 @@ class HomeScreen extends StatelessWidget {
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           return Scaffold(
-            backgroundColor:
-                (state is ShowQuestion) ? Colors.white70 : Colors.white,
+            // backgroundColor:
+            //     (state is ShowQuestion) ? Colors.white70 : Colors.white,
             body: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -181,17 +181,83 @@ class _QuestionView extends StatelessWidget {
       builder: (context, state) {
         final _question =
             RepositoryProvider.of<QuizRepo>(context).questions[index];
-        return Padding(
+        final _length =
+            RepositoryProvider.of<QuizRepo>(context).questions.length;
+        return Container(
+          width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: Card(
-            child: ListTile(
-              title: Text(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Expanded(child: SizedBox()),
+              Text(
+                'Question ${index + 1}/$_length',
+                style: AppConfig.getTextStyle(
+                  context: context,
+                  textColor: TextColor.disabled,
+                  textSize: TextSize.normal,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
                 _question.question,
+                style: AppConfig.getTextStyle(
+                  context: context,
+                  textColor: TextColor.black,
+                  textSize: TextSize.sub,
+                ),
               ),
-              subtitle: Text(
-                _question.options[0]['text'],
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: _question.options.length,
+                itemBuilder: (context, _i) {
+                  final _option = _question.options[_i];
+                  return RawMaterialButton(
+                    onPressed: () {
+                      BlocProvider.of<HomeBloc>(context)
+                          .add(SelectAnOption(_option['optionLetter']));
+                    },
+                    child: Row(
+                      children: [
+                        Radio<dynamic>(
+                          fillColor: MaterialStateColor.resolveWith(
+                            (states) => Theme.of(context).colorScheme.primary,
+                          ),
+                          focusColor: MaterialStateColor.resolveWith(
+                            (states) => Theme.of(context).primaryColorLight,
+                          ),
+                          value: _option['optionLetter'],
+                          groupValue:
+                              BlocProvider.of<HomeBloc>(context).answers[index],
+                          onChanged: (_selected) {
+                            if (_selected == null) return;
+                            BlocProvider.of<HomeBloc>(context)
+                                .add(SelectAnOption(_selected));
+                          },
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            _option['text'],
+                            style: AppConfig.getTextStyle(
+                              context: context,
+                              textColor: TextColor.black,
+                              textSize: TextSize.normal,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
-            ),
+              const Expanded(
+                flex: 2,
+                child: SizedBox(),
+              ),
+            ],
           ),
         );
       },

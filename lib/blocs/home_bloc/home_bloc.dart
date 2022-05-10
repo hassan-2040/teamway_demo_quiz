@@ -11,8 +11,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   int index = 0;
 
+  Map<int, dynamic> answers = {}; //key: question index, value: answer index in terms of A,B,C,D
+
   HomeBloc(this._quizRepo) : super(HomeInitial()) {
     on<StartQuiz>(onStartQuiz);
+    on<SelectAnOption>(onSelectAnOption);
     on<ShowPreviousQuestion>(onShowPreviousQuestion);
     on<ShowNextQuestion>(onShowNextQuestion);
   }
@@ -27,6 +30,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
   }
 
+  void onSelectAnOption(SelectAnOption event, emit) {
+    answers[index] = event.option;
+    emit(ShowQuestion(index));
+  }
+
   void onShowPreviousQuestion(ShowPreviousQuestion event, emit) {
     index = index - 1;
     emit(ShowQuestion(index));
@@ -36,5 +44,4 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     index = index + 1;
     emit(ShowQuestion(index));
   }
-
 }

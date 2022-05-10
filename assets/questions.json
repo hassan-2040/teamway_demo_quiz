@@ -4,18 +4,22 @@
             "question": "You’re really busy at work and a colleague is telling you their life story and personal woes. You:",
             "options": [
                 {
+                    "optionLetter": "A",
                     "text": "Don’t dare to interrupt them",
                     "result": "introvert"
                 },
                 {
+                    "optionLetter": "B",
                     "text": "Think it’s more important to give them some of your time; work can wait",
                     "result": "extrovert"
                 },
                 {
+                    "optionLetter": "C",
                     "text": "Listen, but with only with half an ear",
                     "result": "introvert"
                 },
                 {
+                    "optionLetter": "D",
                     "text": "Interrupt and explain that you are really busy at the moment",
                     "result": "extrovert"
                 }
@@ -25,18 +29,22 @@
             "question": "You’ve been sitting in the doctor’s waiting room for more than 25 minutes. You:",
             "options": [
                 {
+                    "optionLetter": "A",
                     "text": "Look at your watch every two minutes",
                     "result": "introvert"
                 },
                 {
+                    "optionLetter": "B",
                     "text": "Bubble with inner anger, but keep quiet",
                     "result": "introvert"
                 },
                 {
+                    "optionLetter": "C",
                     "text": "Explain to other equally impatient people in the room that the doctor is always running late",
                     "result": "extrovert"
                 },
                 {
+                    "optionLetter": "D",
                     "text": "Complain in a loud voice, while tapping your foot impatiently",
                     "result": "extrovert"
                 }
@@ -46,18 +54,22 @@
             "question": "You’re having an animated discussion with a colleague regarding a project that you’re in charge of. You:",
             "options": [
                 {
+                    "optionLetter": "A",
                     "text": "Don’t dare contradict them",
                     "result": "introvert"
                 },
                 {
+                    "optionLetter": "B",
                     "text": "Think that they are obviously right",
                     "result": "introvert"
                 },
                 {
+                    "optionLetter": "C",
                     "text": "Defend your own point of view, tooth and nail",
                     "result": "extrovert"
                 },
                 {
+                    "optionLetter": "D",
                     "text": "Continuously interrupt your colleague",
                     "result": "extrovert"
                 }
@@ -67,18 +79,22 @@
             "question": "You are taking part in a guided tour of a museum. You:",
             "options": [
                 {
+                    "optionLetter": "A",
                     "text": "Are a bit too far towards the back so don’t really hear what the guide is saying",
                     "result": "introvert"
                 },
                 {
+                    "optionLetter": "B",
                     "text": "Follow the group without question",
                     "result": "introvert"
                 },
                 {
+                    "optionLetter": "C",
                     "text": "Make sure that everyone is able to hear properly",
                     "result": "extrovert"
                 },
                 {
+                    "optionLetter": "D",
                     "text": "Are right up the front, adding your own comments in a loud voice",
                     "result": "extrovert"
                 }
@@ -88,18 +104,22 @@
             "question": "During dinner parties at your home, you have a hard time with people who:",
             "options": [
                 {
+                    "optionLetter": "A",
                     "text": "Ask you to tell a story in front of everyone else",
                     "result": "introvert"
                 },
                 {
+                    "optionLetter": "B",
                     "text": "Talk privately between themselves",
                     "result": "extrovert"
                 },
                 {
+                    "optionLetter": "C",
                     "text": "Hang around you all evening",
                     "result": "introvert"
                 },
                 {
+                    "optionLetter": "D",
                     "text": "Always drag the conversation back to themselves",
                     "result": "extrovert"
                 }

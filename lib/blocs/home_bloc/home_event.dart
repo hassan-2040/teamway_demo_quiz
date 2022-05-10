@@ -8,3 +8,8 @@ class StartQuiz extends HomeEvent {}
 class ShowPreviousQuestion extends HomeEvent {}
 
 class ShowNextQuestion extends HomeEvent {}
+
+class SelectAnOption extends HomeEvent {
+  final String option;
+  SelectAnOption(this.option);
+}
