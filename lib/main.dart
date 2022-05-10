@@ -14,12 +14,8 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider<QuizRepo>(
-          create: (context) => QuizRepo(),
-        ),
-      ],
+    return RepositoryProvider(
+      create: (context) => QuizRepo(),
       child: MultiBlocProvider(
         providers: [
           BlocProvider<SplashBloc>(

@@ -15,7 +15,7 @@ class AppRouter {
     //use a switch statement to match strings to screens based on use-case
     return [
       MaterialPageRoute(
-        builder: (_) => const SplashScreen(), //TODO change this to home screen
+        builder: (_) => const SplashScreen(),
       ),
     ];
   }
