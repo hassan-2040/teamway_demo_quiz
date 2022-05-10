@@ -48,6 +48,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(ShowQuestion(index));
   }
 
+  //TODO change this flow to store entire option in the answers map and then evaluate it at runtime
   void onFinishQuiz(FinishQuiz event, emit) {
     emit(QuizLoading());
     int _introvertCount = 0;

@@ -9,7 +9,15 @@ This app is a demo quiz app designed for Teamway onboarding. It takes a few ques
 
 The app uses BLoC pattern for state management. 
 
-The questions for the quiz are stored in assets/questions.json file and extracted at runtime. 
+The questions for the quiz are stored in assets/questions.json file and extracted at runtime.
+
+## Questions.json
+
+This file contains json array of questions. Each question has a list of options as multiple choice.
+
+Each option has optionLetter A, B, C or D. It has text and a result of either 'introvert' or an 'extrovert' to keep track of the answers. 
+
+To calculate the result, the answers are stored in a temporary Map in Home Bloc. The keys of this Map are the index of the questions in the questions list in quiz_repo.dart. 
 
 ## File Organisation
 
@@ -27,16 +35,16 @@ Within the lib folder, the following main folders are created:
 
 ## File Details
 
-# main.dart
+### main.dart
 - Repository provider and Multibloc provider is used to create respository and blocs. This helps in making sure both types of provides are available in the app files globally.
 - ColorScheme is created using constant color values located in constants.dart.
 - AppRouter file is used for initial route and on route generation. 
 
-# Splash Screen and Splash Bloc
+### Splash Screen and Splash Bloc
 - Splash screen has simple animation to generate visual appeal.
 - Splash bloc simply mocks an API call, waits for 2 seconds and navigates to home screen. In a production app, this is where perloading of any relevant data is done. 
 
-# Home Screen and Home Bloc
+### Home Screen and Home Bloc
 - The default view on home screen is the start quiz view. It simply explains the quiz and shows a button that will trigger the quiz beginning. 
 - When Start Quiz is pressed, mock API call is triggered in the quiz_repo.dart which populates questions list in the said repo. This list is used to view questions in the questions view on home screen. 
 - Start Quiz indicates the bloc to begin the quiz, which changes Home screen to question view. 
@@ -45,14 +53,14 @@ Within the lib folder, the following main folders are created:
 - The quiz can be restarted from result view. 
 - If Next button is pressed without choosing an option, a warning snackbar is shown. 
 
-# Quiz Repo
+### Quiz Repo
 - This file contains a single function that decodes the questions from questions.json asset file and maps them into an array of Questions. 
 - To mock an API call, it awaits for 1 second. 
 
-# Question Model
+### Question Model
 - To properly integrate the questions from json into our UI, this model is used. 
 
-# Utilities
+### Utilities
 - App Config file contains:
     - Root context (base screen context) to show snack bar. 
     - Media Query data such as device size and safe area. 
@@ -61,18 +69,3 @@ Within the lib folder, the following main folders are created:
 - App Router gives an initial route and a function to navigate as needed throughout the app life cycle.
 - Constants.dart contains all the constants used within the app, including enums. 
 - Helper functions are extra functions that help with various logical flows. 
-
-
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
