@@ -8,6 +8,8 @@ class AppConfig {
   //screen info/config
   static late double screenWidth;
   static late double screenHeight;
+  static late double safeAreaTop;
+  static late double safeAreaBottom;
   static late double blockSizeHorizontal;
   static late double blockSizeVertical;
   static late double _safeAreaHorizontal;
@@ -60,7 +62,7 @@ class AppConfig {
         _color = Theme.of(context).colorScheme.primary;
         break;
       case TextColor.primaryLight:
-        _color = Theme.of(context).colorScheme.secondary;
+        _color = Theme.of(context).primaryColorDark;
         break;
       case TextColor.black:
         _color = Colors.black;
@@ -72,7 +74,7 @@ class AppConfig {
         _color = Colors.red;
         break;
       case TextColor.disabled:
-        _color = Colors.grey[800];
+        _color = Theme.of(context).disabledColor;
         break;
       case TextColor.textButton:
         _color = Colors.blue;
@@ -118,6 +120,9 @@ class AppConfig {
       _textSizeNormal = 16;
       _textSizeSmall = 12;
     }
+
+    safeAreaTop = _mediaQueryData.padding.top;
+    safeAreaBottom = _mediaQueryData.padding.bottom;
 
     _safeAreaHorizontal =
         _mediaQueryData.padding.left + _mediaQueryData.padding.right;
