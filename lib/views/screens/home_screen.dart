@@ -6,6 +6,7 @@ import 'package:teamway_demo_quiz/utilities/app_config.dart';
 import 'package:teamway_demo_quiz/utilities/constants.dart';
 import 'package:teamway_demo_quiz/views/common_widgets/feedback_widgets.dart';
 
+//TODO remove bloc builder on scaffold if it is useless
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
@@ -22,8 +23,6 @@ class HomeScreen extends StatelessWidget {
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           return Scaffold(
-            // backgroundColor:
-            //     (state is ShowQuestion) ? Colors.white70 : Colors.white,
             body: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -80,9 +79,18 @@ class HomeScreen extends StatelessWidget {
                               //TODO show result screen
                               return;
                             }
-                            BlocProvider.of<HomeBloc>(context).add(
-                              ShowNextQuestion(),
-                            );
+
+                            //if next button is pressed without selecting an option, show error
+                            if (BlocProvider.of<HomeBloc>(context)
+                                    .answers[_index] ==
+                                null) {
+                              FeedbackWidgets.showFailureSnackBar(
+                                  snackBarText: 'You must select an option!');
+                            } else {
+                              BlocProvider.of<HomeBloc>(context).add(
+                                ShowNextQuestion(),
+                              );
+                            }
                           },
                           child:
                               Text(_index == (_length - 1) ? 'Finish' : 'Next'),

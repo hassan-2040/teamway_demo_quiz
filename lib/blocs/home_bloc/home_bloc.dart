@@ -11,7 +11,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   int index = 0;
 
-  Map<int, dynamic> answers = {}; //key: question index, value: answer index in terms of A,B,C,D
+  Map<int, dynamic> answers =
+      {}; //key: question index, value: answer index in terms of A,B,C,D
 
   HomeBloc(this._quizRepo) : super(HomeInitial()) {
     on<StartQuiz>(onStartQuiz);
