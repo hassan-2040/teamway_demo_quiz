@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teamway_demo_quiz/views/screens/home_screen.dart';
+import 'package:teamway_demo_quiz/views/screens/home/home_screen.dart';
 import 'package:teamway_demo_quiz/views/screens/splash_screen.dart';
 
 class AppRouter {
@@ -30,23 +30,6 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(),
         );
-      // case authScreenRoute:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const AuthScreen(),
-      //   );
-      // case passwordScreenRoute:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const PasswordSceen(),
-      //   );
-
-      // case emailVerificationScreenRoute:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const EmailVerificationScreen(),
-      //   );
-      // case pinVerificationScreenRoute:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const PinVerificationScreen(),
-      //   );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

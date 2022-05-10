@@ -54,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    AppConfig().init(context);
+    AppConfig().setRootContext(context);
     return BlocListener<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state is NavigateToHome) {

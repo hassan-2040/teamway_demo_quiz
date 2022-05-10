@@ -1,4 +1,5 @@
 
+///Returning the result Title based on the result
 String getResultTitle(String _result) {
   if (_result == 'introvert') {
     return 'You are an Introvert';
@@ -7,6 +8,7 @@ String getResultTitle(String _result) {
   }
 }
 
+///Returning the result description based on the result
 String getResultDescription(String _result) {
   if (_result == 'introvert') {
     return 'An introvert is a person with qualities of a personality type known as introversion, which means that they feel more comfortable focusing on their inner thoughts and ideas, rather than what\'s happening externally. They enjoy spending time with just one or two people, rather than large groups or crowds.';
