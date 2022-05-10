@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:teamway_demo_quiz/views/screens/home_screen.dart';
 import 'package:teamway_demo_quiz/views/screens/splash_screen.dart';
 
 class AppRouter {
-  
   //app route names
   static const String splashScreenRoute = '/splashScreen';
+  static const String homeScreenRoute = '/homeScreen';
 
   ///Used this function to make sure the home attribute of MaterialApp is not rendered
   ///in addition to the required screens. If this is not overridden, an extra screen pops up
@@ -25,6 +26,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const SplashScreen(),
         );
+      case homeScreenRoute:
+        return MaterialPageRoute(
+          builder: (_) => const HomeScreen(),
+        );
       // case authScreenRoute:
       //   return MaterialPageRoute(
       //     builder: (_) => const AuthScreen(),
@@ -33,10 +38,7 @@ class AppRouter {
       //   return MaterialPageRoute(
       //     builder: (_) => const PasswordSceen(),
       //   );
-      // case homeScreenRoute:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const HomeScreen(),
-      //   );
+
       // case emailVerificationScreenRoute:
       //   return MaterialPageRoute(
       //     builder: (_) => const EmailVerificationScreen(),

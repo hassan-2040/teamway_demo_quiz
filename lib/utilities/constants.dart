@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const Color primaryColorDark = Color(0xFF05316e);
+const accentColor = Color(0xFF1b76f5);
 const MaterialColor themeColor = MaterialColor(0xFF0e4188, _color);
 const Map<int, Color> _color = {
   50: Color.fromRGBO(14, 65, 136, .1),
@@ -13,4 +15,23 @@ const Map<int, Color> _color = {
   800: Color.fromRGBO(14, 65, 136, .9),
   900: Color.fromRGBO(14, 65, 136, 1),
 };
+
+//Enums
+enum TextSize {
+  main,
+  sub,
+  large,
+  normal,
+  small,
+}
+
+enum TextColor {
+  primary,
+  primaryLight,
+  black,
+  white,
+  danger, //red
+  disabled,
+  textButton //underlined blue
+}
 
