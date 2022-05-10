@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
             create: (context) => SplashBloc()..add(TriggerSplashEvent()),
           ),
           BlocProvider<HomeBloc>(
-            create: (context) => HomeBloc(RepositoryProvider.of<QuizRepo>(context)),
+            create: (context) =>
+                HomeBloc(RepositoryProvider.of<QuizRepo>(context)),
           ),
         ],
         child: MaterialApp(

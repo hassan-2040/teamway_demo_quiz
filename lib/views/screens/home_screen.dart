@@ -19,75 +19,83 @@ class HomeScreen extends StatelessWidget {
           message: 'Are you sure you want to quit?',
         );
       },
-      child: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              height: AppConfig.safeAreaTop,
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            Expanded(
-              child: BlocBuilder<HomeBloc, HomeState>(
-                builder: (context, state) {
-                  if (state is HomeInitial) {
-                    return const _StartQuizView();
-                  } else if (state is ShowQuestion) {
-                    return _QuestionView(state.index);
-                  } else if (state is QuizLoadingError) {
-                    return _ErrorView(state.error);
-                  } else {
-                    return const _LoadingView();
-                  }
-                },
-              ),
-            ),
-          ],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            final _length =
-                RepositoryProvider.of<QuizRepo>(context).questions.length;
-            final _index = BlocProvider.of<HomeBloc>(context).index;
-            return Visibility(
-              visible: state is ShowQuestion,
-              child: Row(
-                children: [
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: _index == 0
-                          ? null
-                          : () {
-                              BlocProvider.of<HomeBloc>(context).add(
-                                ShowPreviousQuestion(),
-                              );
-                            },
-                      child: const Text('Previous'),
-                    ),
+      child: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return Scaffold(
+            backgroundColor:
+                (state is ShowQuestion) ? Colors.white70 : Colors.white,
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  height: AppConfig.safeAreaTop,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                Expanded(
+                  child: BlocBuilder<HomeBloc, HomeState>(
+                    builder: (context, state) {
+                      if (state is HomeInitial) {
+                        return const _StartQuizView();
+                      } else if (state is ShowQuestion) {
+                        return _QuestionView(state.index);
+                      } else if (state is QuizLoadingError) {
+                        return _ErrorView(state.error);
+                      } else {
+                        return const _LoadingView();
+                      }
+                    },
                   ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (_index == (_length - 1)) {
-                          //TODO show result screen
-                          return;
-                        }
-                        BlocProvider.of<HomeBloc>(context).add(
-                          ShowNextQuestion(),
-                        );
-                      },
-                      child: Text(_index == (_length - 1) ? 'Finish' : 'Next'),
-                    ),
+                ),
+              ],
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: BlocBuilder<HomeBloc, HomeState>(
+              builder: (context, state) {
+                final _length =
+                    RepositoryProvider.of<QuizRepo>(context).questions.length;
+                final _index = BlocProvider.of<HomeBloc>(context).index;
+                return Visibility(
+                  visible: state is ShowQuestion,
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: _index == 0
+                              ? null
+                              : () {
+                                  BlocProvider.of<HomeBloc>(context).add(
+                                    ShowPreviousQuestion(),
+                                  );
+                                },
+                          child: const Text('Previous'),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (_index == (_length - 1)) {
+                              //TODO show result screen
+                              return;
+                            }
+                            BlocProvider.of<HomeBloc>(context).add(
+                              ShowNextQuestion(),
+                            );
+                          },
+                          child:
+                              Text(_index == (_length - 1) ? 'Finish' : 'Next'),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                    ],
                   ),
-                  const SizedBox(width: 10),
-                ],
-              ),
-            );
-          },
-        ),
+                );
+              },
+            ),
+          );
+        },
       ),
     );
   }
