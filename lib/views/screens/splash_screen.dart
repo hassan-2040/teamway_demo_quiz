@@ -41,9 +41,14 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
 
-    _slideController.forward();
+    _runAnimation();
 
     super.initState();
+  }
+
+  _runAnimation() async {
+    await Future.delayed(const Duration(milliseconds: 300));
+    _slideController.forward();
   }
 
   @override
