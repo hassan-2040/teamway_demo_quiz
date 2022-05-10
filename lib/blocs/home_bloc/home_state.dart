@@ -12,6 +12,11 @@ class ShowQuestion extends HomeState {
   ShowQuestion(this.index);
 }
 
+class QuizFinished extends HomeState {
+  final String result;
+  QuizFinished(this.result);
+}
+
 class QuizLoadingError extends HomeState {
   final String error;
   QuizLoadingError(this.error);

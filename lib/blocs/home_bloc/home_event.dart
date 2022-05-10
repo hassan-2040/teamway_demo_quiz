@@ -13,3 +13,7 @@ class SelectAnOption extends HomeEvent {
   final String option;
   SelectAnOption(this.option);
 }
+
+class FinishQuiz extends HomeEvent {}
+
+class RetakeQuiz extends HomeEvent {}

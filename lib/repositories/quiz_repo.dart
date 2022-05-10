@@ -10,7 +10,7 @@ class QuizRepo {
   /// Since the questions are stored locally, Future.delayed is used to mock an API call
   Future<void> fetchQuestions() async {
     try {
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       final String _response =
           await rootBundle.loadString('assets/questions.json');
       final Map<String, dynamic> _json = json.decode(_response);

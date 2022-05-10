@@ -4,6 +4,7 @@ import 'package:teamway_demo_quiz/blocs/home_bloc/home_bloc.dart';
 import 'package:teamway_demo_quiz/repositories/quiz_repo.dart';
 import 'package:teamway_demo_quiz/utilities/app_config.dart';
 import 'package:teamway_demo_quiz/utilities/constants.dart';
+import 'package:teamway_demo_quiz/utilities/helper_functions.dart';
 import 'package:teamway_demo_quiz/views/common_widgets/feedback_widgets.dart';
 
 //TODO remove bloc builder on scaffold if it is useless
@@ -39,6 +40,8 @@ class HomeScreen extends StatelessWidget {
                         return _QuestionView(state.index);
                       } else if (state is QuizLoadingError) {
                         return _ErrorView(state.error);
+                      } else if (state is QuizFinished) {
+                        return _QuizFinishedView(state.result);
                       } else {
                         return const _LoadingView();
                       }
@@ -76,7 +79,9 @@ class HomeScreen extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             if (_index == (_length - 1)) {
-                              //TODO show result screen
+                              BlocProvider.of<HomeBloc>(context).add(
+                                FinishQuiz(),
+                              );
                               return;
                             }
 
@@ -269,6 +274,77 @@ class _QuestionView extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _QuizFinishedView extends StatelessWidget {
+  final String result;
+  const _QuizFinishedView( this.result,{Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Expanded(child: SizedBox()),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            getResultTitle(result),
+            textAlign: TextAlign.left,
+            style: AppConfig.getTextStyle(
+              context: context,
+              textColor: TextColor.primary,
+              textSize: TextSize.main,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        const Expanded(flex: 1, child: SizedBox()),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            getResultDescription(result),
+            textAlign: TextAlign.left,
+            style: AppConfig.getTextStyle(
+              context: context,
+              textColor: TextColor.primaryLight,
+              textSize: TextSize.large,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+        ),
+        const Expanded(
+          flex: 3,
+          child: SizedBox(),
+        ),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+              ),
+            ),
+            onPressed: () {
+              BlocProvider.of<HomeBloc>(context).add(RetakeQuiz());
+            },
+            child: Text(
+              'Retake the Quiz',
+              style: AppConfig.getTextStyle(
+                context: context,
+                textSize: TextSize.normal,
+              ),
+            ),
+          ),
+        ),
+        const Expanded(child: SizedBox()),
+      ],
     );
   }
 }
