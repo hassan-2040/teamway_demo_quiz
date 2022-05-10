@@ -68,4 +68,7 @@ Within the lib folder, the following main folders are created:
     - Confirmation, success and failure snack bars. 
 - App Router gives an initial route and a function to navigate as needed throughout the app life cycle.
 - Constants.dart contains all the constants used within the app, including enums. 
-- Helper functions are extra functions that help with various logical flows. 
+- Helper functions are extra functions that help with various logical flows.
+
+#### Note
+It was mentioned in the assignment that integrating unit tests is a plus. While I do understand the theory and usage of tests in Flutter, I have not yet come around to implementing them in production apps. This is why I did not implement them in this app as of yet. This is next in my to-do list.
