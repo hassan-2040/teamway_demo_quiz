@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teamway_demo_quiz/blocs/home_bloc/home_bloc.dart';
+import 'package:teamway_demo_quiz/repositories/quiz_repo.dart';
 import 'package:teamway_demo_quiz/utilities/app_config.dart';
 import 'package:teamway_demo_quiz/utilities/constants.dart';
 import 'package:teamway_demo_quiz/views/common_widgets/feedback_widgets.dart';
@@ -31,8 +32,8 @@ class HomeScreen extends StatelessWidget {
                 builder: (context, state) {
                   if (state is HomeInitial) {
                     return const _StartQuizView();
-                  } else if (state is QuizBegin) {
-                    return const _QuizBeginView();
+                  } else if (state is ShowQuestion) {
+                    return _QuestionView(state.index);
                   } else if (state is QuizLoadingError) {
                     return _ErrorView(state.error);
                   } else {
@@ -42,6 +43,50 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            final _length =
+                RepositoryProvider.of<QuizRepo>(context).questions.length;
+            final _index = BlocProvider.of<HomeBloc>(context).index;
+            return Visibility(
+              visible: state is ShowQuestion,
+              child: Row(
+                children: [
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: _index == 0
+                          ? null
+                          : () {
+                              BlocProvider.of<HomeBloc>(context).add(
+                                ShowPreviousQuestion(),
+                              );
+                            },
+                      child: const Text('Previous'),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_index == (_length - 1)) {
+                          //TODO show result screen
+                          return;
+                        }
+                        BlocProvider.of<HomeBloc>(context).add(
+                          ShowNextQuestion(),
+                        );
+                      },
+                      child: Text(_index == (_length - 1) ? 'Finish' : 'Next'),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
@@ -118,13 +163,30 @@ class _StartQuizView extends StatelessWidget {
   }
 }
 
-class _QuizBeginView extends StatelessWidget {
-  const _QuizBeginView({Key? key}) : super(key: key);
+class _QuestionView extends StatelessWidget {
+  final int index;
+  const _QuestionView(this.index, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Begin quiz now'),
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        final _question =
+            RepositoryProvider.of<QuizRepo>(context).questions[index];
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Card(
+            child: ListTile(
+              title: Text(
+                _question.question,
+              ),
+              subtitle: Text(
+                _question.options[0]['text'],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

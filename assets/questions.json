@@ -1,7 +1,6 @@
 {
     "questions": [
         {
-            "id": 1,
             "question": "You’re really busy at work and a colleague is telling you their life story and personal woes. You:",
             "options": [
                 {
@@ -23,7 +22,6 @@
             ]
         },
         {
-            "id": 2,
             "question": "You’ve been sitting in the doctor’s waiting room for more than 25 minutes. You:",
             "options": [
                 {
@@ -45,7 +43,6 @@
             ]
         },
         {
-            "id": 3,
             "question": "You’re having an animated discussion with a colleague regarding a project that you’re in charge of. You:",
             "options": [
                 {
@@ -67,7 +64,6 @@
             ]
         },
         {
-            "id": 4,
             "question": "You are taking part in a guided tour of a museum. You:",
             "options": [
                 {
@@ -89,7 +85,6 @@
             ]
         },
         {
-            "id": 5,
             "question": "During dinner parties at your home, you have a hard time with people who:",
             "options": [
                 {

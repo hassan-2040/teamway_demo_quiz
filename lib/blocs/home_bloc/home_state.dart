@@ -7,7 +7,10 @@ class HomeInitial extends HomeState {}
 
 class QuizLoading extends HomeState {}
 
-class QuizBegin extends HomeState {}
+class ShowQuestion extends HomeState {
+  final int index;
+  ShowQuestion(this.index);
+}
 
 class QuizLoadingError extends HomeState {
   final String error;

@@ -6,6 +6,8 @@ import 'package:teamway_demo_quiz/models/question.dart';
 class QuizRepo {
   final List<Question> questions = [];
 
+  /// Fetchs the questions from the assets/questions.json file.
+  /// Since the questions are stored locally, Future.delayed is used to mock an API call
   Future<void> fetchQuestions() async {
     try {
       await Future.delayed(const Duration(seconds: 2));
