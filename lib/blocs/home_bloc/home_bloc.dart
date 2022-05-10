@@ -12,7 +12,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   int index = 0;
 
   Map<int, dynamic> answers =
-      {}; //key: question index in quiz repo list, value: answer index in terms of A,B,C,D
+      {}; //key: question index in quiz repo list, value: one of the options Map from json. 
 
   HomeBloc(this._quizRepo) : super(HomeInitial()) {
     on<StartQuiz>(onStartQuiz);
@@ -48,22 +48,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(ShowQuestion(index));
   }
 
-  //TODO change this flow to store entire option in the answers map and then evaluate it at runtime
+//The keys of the answers map are the question indexes in the quiz repo list.
+//They can be used to show answers back to the user if needed, which is why
+//I used a Map for answers. 
   void onFinishQuiz(FinishQuiz event, emit) {
     emit(QuizLoading());
     int _introvertCount = 0;
     int _extrovertCount = 0;
     String _result = '';
-    answers.forEach((key, value) {
-      final _question = _quizRepo.questions[key];
-      final _result = _question.options
-          .firstWhere((element) => element['optionLetter'] == value)['result'];
-      if (_result == 'introvert') {
+    for (var element in answers.values) {
+      if (element['result'] == 'introvert') {
         _introvertCount++;
       } else {
         _extrovertCount++;
       }
-    });
+    }
     if (_introvertCount > _extrovertCount) {
       _result = 'introvert';
     } else {

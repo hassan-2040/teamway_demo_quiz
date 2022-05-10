@@ -15,9 +15,9 @@ The questions for the quiz are stored in assets/questions.json file and extracte
 
 This file contains json array of questions. Each question has a list of options as multiple choice.
 
-Each option has optionLetter A, B, C or D. It has text and a result of either 'introvert' or an 'extrovert' to keep track of the answers. 
+Each option has a text and a result of either 'introvert' or an 'extrovert' to keep track of the answers. 
 
-To calculate the result, the answers are stored in a temporary Map in Home Bloc. The keys of this Map are the index of the questions in the questions list in quiz_repo.dart. 
+To calculate the result, the answers are stored in a temporary Map in Home Bloc. The keys of this Map are the index of the questions in the questions list in quiz_repo.dart. The adjacent values are the answers that user chooses. 
 
 ## File Organisation
 

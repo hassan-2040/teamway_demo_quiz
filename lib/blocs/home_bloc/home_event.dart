@@ -10,7 +10,7 @@ class ShowPreviousQuestion extends HomeEvent {}
 class ShowNextQuestion extends HomeEvent {}
 
 class SelectAnOption extends HomeEvent {
-  final String option;
+  final Map<String, dynamic> option;
   SelectAnOption(this.option);
 }
 

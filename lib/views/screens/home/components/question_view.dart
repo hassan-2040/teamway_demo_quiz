@@ -51,7 +51,7 @@ class QuestionView extends StatelessWidget {
                   return RawMaterialButton(
                     onPressed: () {
                       BlocProvider.of<HomeBloc>(context)
-                          .add(SelectAnOption(_option['optionLetter']));
+                          .add(SelectAnOption(_option));
                     },
                     child: Row(
                       children: [
@@ -62,13 +62,13 @@ class QuestionView extends StatelessWidget {
                           focusColor: MaterialStateColor.resolveWith(
                             (states) => Theme.of(context).primaryColorLight,
                           ),
-                          value: _option['optionLetter'],
+                          value: _option,
                           groupValue:
                               BlocProvider.of<HomeBloc>(context).answers[index],
                           onChanged: (_selected) {
                             if (_selected == null) return;
                             BlocProvider.of<HomeBloc>(context)
-                                .add(SelectAnOption(_selected));
+                                .add(SelectAnOption(_option));
                           },
                         ),
                         const SizedBox(width: 10),
