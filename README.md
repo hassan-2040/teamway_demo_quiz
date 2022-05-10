@@ -1,6 +1,8 @@
-# teamway_demo_quiz
+# Teamway Demo Quiz
 
 A quiz app for Teamway onboarding
+
+Taking inspiration from https://www.psychologies.co.uk/test/are-you-an-introvert-or-an-extrovert/#test
 
 ## Getting Started
 
